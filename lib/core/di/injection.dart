@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:vpn_app/core/theme/theme_controller.dart';
 import 'package:vpn_app/data/datasources/mock_connection_stats_data_source.dart';
 import 'package:vpn_app/data/datasources/mock_country_data_sources.dart';
 import 'package:vpn_app/data/datasources/mock_free_locations_data_sources.dart';
@@ -17,6 +18,9 @@ import 'package:vpn_app/presentation/viewmodel/country_view_model.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupDependencies() async {
+
+  //Constants
+  getIt.registerLazySingleton(() => ThemeController());
 
   // DataSources
   getIt.registerLazySingleton<MockCountryDataSources>(() => MockDataSourcesImpl());

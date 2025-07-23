@@ -6,6 +6,8 @@ import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
 import 'package:vpn_app/core/helper/route_helper.dart';
 import 'package:vpn_app/data/models/country_model.dart';
 import 'package:vpn_app/presentation/view/country_search_page.dart';
+import 'package:vpn_app/presentation/view/disconnect/widgets/connection_speed_widget.dart';
+import 'package:vpn_app/presentation/view/widgets/theme_toggle_button.dart';
 import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 import 'package:vpn_app/presentation/viewmodel/country_view_model.dart';
 
@@ -29,11 +31,14 @@ class _DisconnectingViewState extends State<DisconnectingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F5F9 ),
+      // backgroundColor: const Color(0xFFF2F5F9 ),
       appBar: AppBar(
         title:  Text('Disconnect', style: Theme.of(context).textTheme.titleMedium,),
         centerTitle: true,
-        backgroundColor: const Color(0xffF2F5F9),
+        // backgroundColor: const Color(0xffF2F5F9),
+        actions: [
+          ThemeToggleButton()
+        ],
       ),
       body: SafeArea(
         child: Obx(() {
@@ -50,7 +55,7 @@ class _DisconnectingViewState extends State<DisconnectingView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _SpeedWidget(
+                    ConnectionSpeedWidget(
                       icon: HugeIcons.strokeRoundedDownload01,
                       color: Colors.blueAccent,
                       label: 'Download',
@@ -61,7 +66,7 @@ class _DisconnectingViewState extends State<DisconnectingView> {
                       height: 50,
                       color: Colors.grey,
                     ),
-                    _SpeedWidget(
+                    ConnectionSpeedWidget(
                       icon: HugeIcons.strokeRoundedUpload01,
                       color: Colors.amberAccent,
                       label: 'Upload',
@@ -187,39 +192,3 @@ class ConnectingButton extends StatelessWidget {
   }
 }
 
-class _SpeedWidget extends StatelessWidget {
-  final IconData icon;
-  final Color color;
-  final String label;
-  final double value;
-
-  const _SpeedWidget({required this.icon, required this.color, required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon, color: color, size: context.dynamicHeight(0.035)),
-        SizedBox(height: context.dynamicHeight(0.005)),
-        Row(
-          children: [
-            Text(
-            value.toStringAsFixed(2),
-            style: TextStyle( fontWeight: FontWeight.bold, fontSize: context.dynamicHeight(0.022)),
-          ),
-          SizedBox(width: context.dynamicWidth(0.01)),
-            Text(
-            'MB',
-            style: TextStyle(fontSize: context.dynamicHeight(0.014)),
-            ),
-            ],
-          ),
-        SizedBox(height: context.dynamicHeight(0.003)),
-        Text(
-          label,
-          style: TextStyle(fontSize: context.dynamicHeight(0.014)),
-        ),
-      ],
-    );
-  }
-} 

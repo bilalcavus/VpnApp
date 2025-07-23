@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
-import 'package:vpn_app/presentation/view/widgets/home_connecting_time_widget.dart';
-import 'package:vpn_app/presentation/view/widgets/home_connection_section.dart';
-import 'package:vpn_app/presentation/view/widgets/home_free_locations_widget.dart';
-import 'package:vpn_app/presentation/view/widgets/home_header_widget.dart';
+import 'package:vpn_app/core/theme/custom_theme_color.dart';
+import 'package:vpn_app/presentation/view/home/widgets/home_connecting_time_widget.dart';
+import 'package:vpn_app/presentation/view/home/widgets/home_connection_section.dart';
+import 'package:vpn_app/presentation/view/home/widgets/home_free_locations_widget.dart';
+import 'package:vpn_app/presentation/view/home/widgets/home_header_widget.dart';
 import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 import 'package:vpn_app/presentation/viewmodel/country_view_model.dart';
 
@@ -29,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
   @override
 Widget build(BuildContext context) {
   return Scaffold(
-    backgroundColor: const Color(0xffF2F5F9),
+    backgroundColor: CustomColorTheme.bottomSheet(context),
     body: SingleChildScrollView(
       padding: EdgeInsets.zero,
       child: Column(

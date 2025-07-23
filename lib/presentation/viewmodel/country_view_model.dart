@@ -43,22 +43,6 @@ class CountryViewModel extends GetxController {
     }
   }
 
-  // Future<void> fetchCountryByName(int index) async {
-  //   isLoading.value = true;
-  //   errorMessage.value = '';
-  //   final result = await _getFreeLocationByIndex(index);
-  //   try {
-  //     if (result is DataSuccess<CountryModel>) {
-  //       country.value = result.data;
-  //     } else if (result is DataFailed) {
-  //       errorMessage.value = result.error.toString();
-  //     }
-  //   } catch (e) {
-  //     errorMessage.value = 'An error occurred: $e';
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  // }
 
   Future<void> fetchFreeLocations() async {
     isLoading.value = true;

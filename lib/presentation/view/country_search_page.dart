@@ -20,7 +20,7 @@ class CountrySearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF2F5F9),
+      // backgroundColor: const Color(0xffF2F5F9),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: TextField(
@@ -32,8 +32,8 @@ class CountrySearchPage extends StatelessWidget {
           ),
           onChanged: _countryViewModel.filterCountries,
         ),
-        backgroundColor: const Color(0xffF2F5F9),
-        iconTheme: const IconThemeData(color: Colors.black),
+        // backgroundColor: const Color(0xffF2F5F9),
+        // iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: SafeArea(
         child: Obx(() {

@@ -67,11 +67,13 @@ class ConnectionStatsViewModel extends GetxController {
       final currentDuration = connectionStats.value.connectedTime;
       final newDownload = 500 + random.nextInt(100);
       final newUpload = 40 + random.nextInt(20);
+      final newStealth = 0 + random.nextInt(100);
       connectionStats.value = connectionStats.value.copyWith(
         connectedTime: currentDuration + const Duration(seconds: 1),
         downloadSpeed: newDownload,
         uploadSpeed: newUpload,
       );
+      selectedCountry.value?.copyWith(strength: newStealth);
     });
   }
 

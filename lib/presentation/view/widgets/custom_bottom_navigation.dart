@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
+import 'package:vpn_app/core/theme/custom_theme_color.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   final int currentIndex;
@@ -17,7 +18,7 @@ class CustomBottomNavigation extends StatelessWidget {
     return Container(
       height: context.dynamicHeight(0.08),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: CustomColorTheme.bottomNavBarColor(context),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -33,7 +34,7 @@ class CustomBottomNavigation extends StatelessWidget {
             child: _buildNavItem(
               context,
               index: 0,
-              icon: HugeIcons.strokeRoundedHome04,
+              icon: HugeIcons.strokeRoundedMaps,
               label: 'Countries'
             ),
           ),
@@ -73,14 +74,14 @@ class CustomBottomNavigation extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: isSelected ? const Color(0xff1A5CFF) : Colors.black,
+            color: isSelected ? const Color(0xff1A5CFF) : null,
             size: context.dynamicWidth(0.06),
           ),
           SizedBox(height: context.dynamicHeight(0.005)),
           Text(
             label,
             style: TextStyle(
-              color:  isSelected ? const Color(0xff1A5CFF) : Colors.black,
+              color:  isSelected ? const Color(0xff1A5CFF) : null,
               fontSize: context.dynamicHeight(0.014),
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
             ),

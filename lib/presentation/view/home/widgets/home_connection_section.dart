@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
+import 'package:vpn_app/data/models/connection_stats_model.dart';
 import 'package:vpn_app/data/models/country_model.dart';
 import 'package:vpn_app/presentation/view/widgets/flag_icon.dart';
 import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
@@ -21,30 +22,44 @@ class HomeConnectionSection extends StatelessWidget {
         child: Column(
           children: [
             _CountryStats(country: country, isConnected: isConnected),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LoadInfoContainer(
-                  icon: HugeIcons.strokeRoundedDownload01,
-                  title: 'Download:',
-                  value: '${stats.downloadSpeed} MB',
-                  iconColor: Colors.green,
-                  iconBackgroundColor: Colors.green.withOpacity(0.15),
-                ),
-                SizedBox(width: context.dynamicWidth(0.025)),
-                LoadInfoContainer(
-                  icon: HugeIcons.strokeRoundedUpload01,
-                  title: 'Upload:',
-                  value: '${stats.uploadSpeed} MB',
-                  iconColor: Colors.red,
-                  iconBackgroundColor: Colors.red.withOpacity(0.15),
-                ),
-              ],
-            )
+            _LoadSpeedStats(stats: stats)
           ],
         ),
       );
     });
+  }
+}
+
+class _LoadSpeedStats extends StatelessWidget {
+  const _LoadSpeedStats({
+    super.key,
+    required this.stats,
+  });
+
+  final ConnectionStatsModel stats;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        LoadInfoContainer(
+          icon: HugeIcons.strokeRoundedDownload01,
+          title: 'Download:',
+          value: '${stats.downloadSpeed} MB',
+          iconColor: Colors.green,
+          iconBackgroundColor: Colors.green.withOpacity(0.15),
+        ),
+        SizedBox(width: context.dynamicWidth(0.025)),
+        LoadInfoContainer(
+          icon: HugeIcons.strokeRoundedUpload01,
+          title: 'Upload:',
+          value: '${stats.uploadSpeed} MB',
+          iconColor: Colors.red,
+          iconBackgroundColor: Colors.red.withOpacity(0.15),
+        ),
+      ],
+    );
   }
 }
 
@@ -64,7 +79,7 @@ class _CountryStats extends StatelessWidget {
       height: context.dynamicHeight(0.08),
       width: context.dynamicHeight(0.34),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -149,7 +164,7 @@ class LoadInfoContainer extends StatelessWidget {
       width: context.dynamicHeight(0.165),
       margin: EdgeInsets.only(top: context.dynamicHeight(0.015)),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
