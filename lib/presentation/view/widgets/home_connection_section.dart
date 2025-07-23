@@ -1,88 +1,99 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
+import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 
 class HomeConnectionSection extends StatelessWidget {
-  const HomeConnectionSection({
-    super.key,
-  });
+  const HomeConnectionSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Container(
-            height: context.dynamicHeight(0.08),
-            width: context.dynamicHeight(0.34),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 5,
-                  offset: const Offset(0, 2),
-                )
-              ]
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(context.dynamicHeight(0.015)),
-                  child: const FlagIcon(assetPath: 'assets/flag/netherlands.png'),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Netherlands', style: TextStyle(
-                      fontSize: context.dynamicHeight(0.02),
-                      fontWeight: FontWeight.bold
-                    ),),
-                    Text('Amsterdam', style: TextStyle(
-                      fontSize: context.dynamicHeight(0.015),
-                      color: const Color(0xff666666)
-                    )),
-                  ],
-                ),
-                const Spacer(),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
+    final connectionStatsViewModel = getIt<ConnectionStatsViewModel>();
+    return Obx(() {
+      final stats = connectionStatsViewModel.connectionStats.value;
+      final country = stats.connectedCountry;
+      return Center(
+        child: Column(
+          children: [
+            Container(
+              height: context.dynamicHeight(0.08),
+              width: context.dynamicHeight(0.34),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  )
+                ]
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(context.dynamicHeight(0.015)),
+                    child: country != null
+                        ? FlagIcon(assetPath: country.flag)
+                        : const SizedBox.shrink(),
+                  ),
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Stealth'),
-                      Text('%14')
+                      Text(country?.name ?? 'No Country', 
+                      style: TextStyle(
+                        fontSize: context.dynamicHeight(0.02),
+                        fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      ),
+                      Text(country?.city ?? '', style: TextStyle(
+                        fontSize: context.dynamicHeight(0.015),
+                        color: const Color(0xff666666)
+                      )),
                     ],
                   ),
-                )
-              ],
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Stealth'),
+                        Text('${country?.strength}%')
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LoadInfoContainer(
-                icon: HugeIcons.strokeRoundedDownload01,
-                title: 'Download:',
-                value: '527 MB',
-                iconColor: Colors.green,
-                iconBackgroundColor: Colors.green.withOpacity(0.15),
-              ),
-              SizedBox(width: context.dynamicWidth(0.025)),
-              LoadInfoContainer(
-                icon: HugeIcons.strokeRoundedUpload01,
-                title: 'Upload:',
-                value: '123 MB',
-                iconColor: Colors.red,
-                iconBackgroundColor: Colors.red.withOpacity(0.15),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LoadInfoContainer(
+                  icon: HugeIcons.strokeRoundedDownload01,
+                  title: 'Download:',
+                  value: '${stats.downloadSpeed} MB',
+                  iconColor: Colors.green,
+                  iconBackgroundColor: Colors.green.withOpacity(0.15),
+                ),
+                SizedBox(width: context.dynamicWidth(0.025)),
+                LoadInfoContainer(
+                  icon: HugeIcons.strokeRoundedUpload01,
+                  title: 'Upload:',
+                  value: '${stats.uploadSpeed} MB',
+                  iconColor: Colors.red,
+                  iconBackgroundColor: Colors.red.withOpacity(0.15),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+    });
   }
 }
 

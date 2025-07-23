@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/core/resources/data_state.dart';
-import 'package:vpn_app/data/datasources/mock_data_sources.dart';
+import 'package:vpn_app/data/datasources/mock_country_data_sources.dart';
 import 'package:vpn_app/data/models/country_model.dart';
 import 'package:vpn_app/domain/repositories/country_repository.dart';
 
 class CountryRepositoryImpl implements CountryRepository {
-  final MockDataSources _mockDataSources;
+  final MockCountryDataSources _mockDataSources;
   CountryRepositoryImpl(this._mockDataSources);
 
   @override
