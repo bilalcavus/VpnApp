@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:vpn_app/data/mock/mock_data.dart';
 import 'package:vpn_app/core/resources/data_state.dart';
+import 'package:vpn_app/data/mock/mock_data.dart';
 import 'package:vpn_app/data/models/connection_stats_model.dart';
 import 'package:vpn_app/data/models/country_model.dart';
 import 'package:vpn_app/domain/usecases/connection_stats_use_case.dart';
@@ -30,21 +30,26 @@ class ConnectionStatsViewModel extends GetxController {
 
 
   Future<void> fetchConnectionStats() async {
-    isLoading.value = true;
-    errorMessage.value = '';
-    try {
-      final result = await _getConnectionStats();
-      if (result is DataSuccess<ConnectionStatsModel>) {
-        connectionStats.value = result.data!;
-      } else if (result is DataFailed) {
-        errorMessage.value = result.error.toString();
-      }
-    } catch (e) {
-      errorMessage.value = 'An error occurred while fetching connection stats: $e';
-    } finally {
-      isLoading.value = false;
+  isLoading.value = true;
+  errorMessage.value = '';
+  try {
+    final result = await _getConnectionStats();
+    if (result is DataSuccess<ConnectionStatsModel> && result.data != null) {
+      connectionStats.value = result.data!;
+      errorMessage.value = '';
+    } 
+    else if (result is DataFailed) {
+      errorMessage.value = result.error?.toString() ?? 'Bilinmeyen bir hata oluştu';
+    } 
+    else {
+      errorMessage.value = 'Bilinmeyen bir hata oluştu';
     }
+  } catch (e) {
+    errorMessage.value = 'Bağlantı istatistikleri alınırken hata oluştu: $e';
+  } finally {
+    isLoading.value = false;
   }
+}
 
   Future<void> connectToCountry(CountryModel country) async {
     debugPrint('connectToCountry: Connecting to ${country.name}');
@@ -70,14 +75,17 @@ class ConnectionStatsViewModel extends GetxController {
     });
   }
 
-  Future<void> disconnected() async {
+  Future<void> disconnected(CountryModel country) async {
     debugPrint('disconnected: Disconnecting');
     _timer?.cancel();
     isConnected.value = false;
+    selectedCountry.value = country.copyWith(isConnected: false);
     selectedCountry.value = null;
     connectionStats.value = connectionStats.value.copyWith(
-      connectedCountry: null,
-      connectedTime: Duration.zero
+      resetConnectedCountry: true,
+      connectedTime: Duration.zero,
+      downloadSpeed: 0,
+      uploadSpeed: 0,
     );
   }
 

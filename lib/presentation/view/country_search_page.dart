@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
-import 'package:vpn_app/presentation/view/widgets/home_connection_section.dart';
+import 'package:vpn_app/core/helper/route_helper.dart';
+import 'package:vpn_app/presentation/view/connection_loading_view.dart';
+import 'package:vpn_app/presentation/view/widgets/flag_icon.dart';
+import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 import 'package:vpn_app/presentation/viewmodel/country_view_model.dart';
+import 'package:vpn_app/presentation/viewmodel/navigation_view_model.dart';
 
 class CountrySearchPage extends StatelessWidget {
   CountrySearchPage({super.key});
 
   final CountryViewModel _countryViewModel = getIt<CountryViewModel>();
+  final ConnectionStatsViewModel _connectionStatsViewModel = getIt<ConnectionStatsViewModel>();
   final TextEditingController _searchController = TextEditingController();
+  final NavigationViewModel navController = Get.put(NavigationViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +47,10 @@ class CountrySearchPage extends StatelessWidget {
                 title: Text(country.name),
                 subtitle: Text(country.city ?? ''),
                 trailing: Text('${country.locationCount} Location', style: TextStyle(fontSize: context.dynamicHeight(0.015))),
-                onTap: () {
-                  Navigator.pop(context, country); //TODO burayı connect loadinge atıcaz
+                onTap: () async {
+                  _countryViewModel.setSelectedCountry(country);
+                  await _connectionStatsViewModel.connectToCountry(country);
+                  RouteHelper.pushAndCloseOther(context, ConnectionLoadingView(country: country));
                 },
               );
             },

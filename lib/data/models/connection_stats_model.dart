@@ -43,12 +43,15 @@ class ConnectionStatsModel extends ConnectionStatsEntity {
     int? uploadSpeed,
     Duration? connectedTime,
     CountryModel? connectedCountry,
+    bool resetConnectedCountry = false,
   }) {
     return ConnectionStatsModel(
       downloadSpeed: downloadSpeed ?? this.downloadSpeed,
       uploadSpeed: uploadSpeed ?? this.uploadSpeed,
       connectedTime: connectedTime ?? this.connectedTime,
-      connectedCountry: connectedCountry ?? this.connectedCountry,
+      connectedCountry: resetConnectedCountry
+        ? null
+        : connectedCountry ?? this.connectedCountry,
     );
   }
 }

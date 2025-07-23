@@ -9,14 +9,22 @@ class CountryViewModel extends GetxController {
   var countries = <CountryModel>[].obs;
   var freeLocations = <CountryModel>[].obs;
   var filteredCountries = <CountryModel>[].obs;
+  var selectedCountry = Rxn<CountryModel>();
   var isSearching = false.obs;
   var isLoading = true.obs;
   var errorMessage = ''.obs;
+  
   final GetCountryUseCase _getCountries;
   final GetFreeLocationsUseCase _getFreeLocations;
 
+  
   CountryViewModel(this._getCountries, this._getFreeLocations);
 
+  
+  void setSelectedCountry(CountryModel model) {
+    selectedCountry.value = model;
+  }
+  
   Future<void> fetchCountries() async {
     isLoading.value = true;
     errorMessage.value = '';
@@ -35,8 +43,26 @@ class CountryViewModel extends GetxController {
     }
   }
 
+  // Future<void> fetchCountryByName(int index) async {
+  //   isLoading.value = true;
+  //   errorMessage.value = '';
+  //   final result = await _getFreeLocationByIndex(index);
+  //   try {
+  //     if (result is DataSuccess<CountryModel>) {
+  //       country.value = result.data;
+  //     } else if (result is DataFailed) {
+  //       errorMessage.value = result.error.toString();
+  //     }
+  //   } catch (e) {
+  //     errorMessage.value = 'An error occurred: $e';
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
+
   Future<void> fetchFreeLocations() async {
     isLoading.value = true;
+    
     errorMessage.value = '';
     final result = await _getFreeLocations();
     debugPrint('$result');

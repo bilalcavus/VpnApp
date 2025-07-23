@@ -63,10 +63,11 @@ class CustomBottomNavigation extends StatelessWidget {
     required int index,
     required IconData icon,
     required String label,
+    VoidCallback? onTapOverride,
   }) {
     final isSelected = currentIndex == index;
     return GestureDetector(
-      onTap: () => onTap(index),
+      onTap: onTapOverride ?? () => onTap(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

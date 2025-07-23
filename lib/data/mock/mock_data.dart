@@ -113,9 +113,9 @@ class MockData {
     ];
 
 
-    static final mockConnectionStats = ConnectionStatsModel(
-      downloadSpeed: 527,
-      uploadSpeed: 49,
+    static const mockConnectionStats = ConnectionStatsModel(
+      downloadSpeed: 0,
+      uploadSpeed: 0,
       connectedTime: Duration.zero,
       connectedCountry: null,
   );

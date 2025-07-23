@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
+import 'package:vpn_app/data/models/country_model.dart';
+import 'package:vpn_app/presentation/view/widgets/flag_icon.dart';
 import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 
 class HomeConnectionSection extends StatelessWidget {
@@ -14,62 +16,11 @@ class HomeConnectionSection extends StatelessWidget {
     return Obx(() {
       final stats = connectionStatsViewModel.connectionStats.value;
       final country = stats.connectedCountry;
+      final isConnected = country != null;
       return Center(
         child: Column(
           children: [
-            Container(
-              height: context.dynamicHeight(0.08),
-              width: context.dynamicHeight(0.34),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 5,
-                    offset: const Offset(0, 2),
-                  )
-                ]
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(context.dynamicHeight(0.015)),
-                    child: country != null
-                        ? FlagIcon(assetPath: country.flag)
-                        : const SizedBox.shrink(),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(country?.name ?? 'No Country', 
-                      style: TextStyle(
-                        fontSize: context.dynamicHeight(0.02),
-                        fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      ),
-                      Text(country?.city ?? '', style: TextStyle(
-                        fontSize: context.dynamicHeight(0.015),
-                        color: const Color(0xff666666)
-                      )),
-                    ],
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Stealth'),
-                        Text('${country?.strength}%')
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
+            _CountryStats(country: country, isConnected: isConnected),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -94,6 +45,85 @@ class HomeConnectionSection extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class _CountryStats extends StatelessWidget {
+  const _CountryStats({
+    super.key,
+    this.country,
+    required this.isConnected,
+  });
+
+  final CountryModel? country;
+  final bool isConnected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: context.dynamicHeight(0.08),
+      width: context.dynamicHeight(0.34),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          )
+        ]
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(context.dynamicHeight(0.015)),
+            child: country != null
+                ? FlagIcon(assetPath: country!.flag)
+                : const SizedBox.shrink(),
+          ),
+          if (!isConnected)  _notConnectedMessage(context) else Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(country?.name ?? 'No Country', 
+              style: TextStyle(
+                fontSize: context.dynamicHeight(0.02),
+                fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              ),
+              Text(country?.city ?? '', style: TextStyle(
+                fontSize: context.dynamicHeight(0.015),
+                color: const Color(0xff666666)
+              )),
+            ],
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(isConnected ? 'Stealth' : ''),
+                Text(isConnected ? '${country?.strength}%' : '')
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Column _notConnectedMessage(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text('Not connected now, please connect a country.',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: context.dynamicHeight(0.013)))
+      ],
+    );
   }
 }
 
@@ -163,19 +193,3 @@ class LoadInfoContainer extends StatelessWidget {
   }
 }
 
-class FlagIcon extends StatelessWidget {
-  final String assetPath;
-  const FlagIcon({
-    super.key, required this.assetPath,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.asset(
-        assetPath,
-        height: context.dynamicHeight(0.04),
-    ));
-  }
-}

@@ -19,5 +19,4 @@ class FreeLocationsRepositoryImpl implements FreeLocationsRepository {
       return DataFailed(FlutterError('An unexpected error occurred: $e'));
     }
   }
-  
 }

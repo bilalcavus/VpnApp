@@ -11,5 +11,4 @@ class MockFreeLocationsDataSourcesImpl implements MockFreeLocationsDataSources {
     await Future.delayed(const Duration(seconds: 1));
     return MockData.mockFreeLocations;
   }
-  
 }

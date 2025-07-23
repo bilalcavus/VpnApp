@@ -22,12 +22,13 @@ class ConnectingTimeWidget extends StatelessWidget {
     final connectionStatsViewModel = getIt<ConnectionStatsViewModel>();
     return Obx(() {
       final duration = connectionStatsViewModel.connectionStats.value.connectedTime;
+      final isConnected = connectionStatsViewModel.connectionStats.value.connectedCountry != null;
       return Center(
         child: Column(
           children: [
             const Text('Connecting Time'),
-            Text(
-              formatDuration(duration),
+            Text( isConnected ?
+              formatDuration(duration) : '--/--/--',
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
