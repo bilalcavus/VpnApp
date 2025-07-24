@@ -110,8 +110,8 @@ class _CountryStats extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(isConnected ? TextStrings.stealth : ''),
-                  Text(isConnected ? '${country?.strength}%' : '', style: const TextStyle(fontWeight: FontWeight.bold),)
+                  Expanded(child: Text(isConnected ? TextStrings.stealth : '')),
+                  Expanded(child: Text(isConnected ? '${country?.strength}%' : '', style: const TextStyle(fontWeight: FontWeight.bold),))
                 ],
               ),
             )

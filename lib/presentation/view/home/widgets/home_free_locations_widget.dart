@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:vpn_app/core/constants/text_strings.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
 import 'package:vpn_app/core/helper/route_helper.dart';
 import 'package:vpn_app/core/theme/custom_theme_color.dart';
@@ -44,10 +45,19 @@ class _FreeLocationWidgetState extends State<FreeLocationWidget> {
                   'Free Locations',
                   style: TextStyle(color: textColor),
                 ),
-                Icon(
-                  HugeIcons.strokeRoundedInformationCircle,
-                  size: context.dynamicHeight(0.018),
-                  color: textColor,
+                InkWell(
+                  onTap: () {
+                    showDialog(context: context, builder: (context){
+                      return const AlertDialog(
+                        content: Text(TextStrings.freeLocationsInfo),
+                      );
+                    });
+                  },
+                  child: Icon(
+                    HugeIcons.strokeRoundedInformationCircle,
+                    size: context.dynamicHeight(0.018),
+                    color: textColor,
+                  ),
                 )
               ],
             ),

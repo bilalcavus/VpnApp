@@ -72,7 +72,7 @@ class CustomBottomNavigation extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: context.dynamicWidth(0.04),
-          vertical: context.dynamicHeight(0.01),
+          // vertical: context.dynamicHeight(0.008),
         ),
         decoration: BoxDecoration(
           color: Colors.transparent,

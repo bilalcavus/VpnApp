@@ -2,6 +2,7 @@ class TextStrings {
   static const disconnect = "Disconnect";
   static const connect = "Connect";
   static const connected = "Connected";
+  static const connecting = 'Connecting...';
   static const searchHint = "Search for a country or city";
   static const download = "Download";
   static const upload = "Upload";

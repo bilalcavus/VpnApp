@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vpn_app/core/constants/text_strings.dart';
 import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
 import 'package:vpn_app/core/helper/route_helper.dart';
@@ -51,7 +52,7 @@ class _ConnectionLoadingViewState extends State<ConnectionLoadingView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset('assets/lottie/connect_loading.json', height: context.dynamicHeight(0.2)),
-              Text('Connecting...', style: TextStyle(fontSize: context.dynamicHeight(0.03), fontWeight: FontWeight.w400),),
+              Text(TextStrings.connecting, style: TextStyle(fontSize: context.dynamicHeight(0.03), fontWeight: FontWeight.w400),),
               FlagIcon(assetPath: countryViewModel.selectedCountry.value!.flag)
             ],
           )

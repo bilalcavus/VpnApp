@@ -10,13 +10,24 @@ import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart'
 import 'package:vpn_app/presentation/viewmodel/country_view_model.dart';
 import 'package:vpn_app/presentation/viewmodel/navigation_view_model.dart';
 
-class CountrySearchPage extends StatelessWidget {
-  CountrySearchPage({super.key});
+class CountrySearchPage extends StatefulWidget {
+  const CountrySearchPage({super.key});
 
+  @override
+  State<CountrySearchPage> createState() => _CountrySearchPageState();
+}
+
+class _CountrySearchPageState extends State<CountrySearchPage> {
   final CountryViewModel _countryViewModel = getIt<CountryViewModel>();
   final ConnectionStatsViewModel _connectionStatsViewModel = getIt<ConnectionStatsViewModel>();
   final TextEditingController _searchController = TextEditingController();
   final NavigationViewModel navController = Get.put(NavigationViewModel());
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

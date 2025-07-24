@@ -48,10 +48,7 @@ class _AboutApp extends StatelessWidget {
           SizedBox(height: context.dynamicHeight(0.01)),
           const Text(TextStrings.appVersion),
           SizedBox(height: context.dynamicHeight(0.01)),
-          Padding(
-            padding:  EdgeInsets.all(context.dynamicHeight(0.01)),
-            child: const Text(TextStrings.appInfo, textAlign: TextAlign.center,),
-          ),
+          const Text(TextStrings.appInfo, textAlign: TextAlign.center),
         ],
       ),
     );
