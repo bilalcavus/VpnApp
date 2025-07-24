@@ -51,6 +51,7 @@ Flutter ile geliştirilmiş, çok katmanlı mimariye sahip, study case amaçlı 
 - Arama çubuğu ile ülke/şehir arayabilirsiniz.
 - Bir ülkeye tıklayarak bağlantı simülasyonu başlatılır.
 - Bağlantı ve bağlantı kesme işlemleri mock verilerle simüle edilir.
+- Setting sekmesinden uygulamanın koyu/açık teması değiştirebilir.
 
 ## Proje Mimarisi
 
@@ -87,6 +88,29 @@ lib/
 | build_runner                 | Kod üretimi ve otomasyon                                    |
 | json_serializable            | JSON serileştirme için kod üretimi (g.dart modelleri için)  |
 
+
+## Testler
+
+Projedeki testler, uygulamanın temel işlevlerinin ve MVVM katmanlarının doğru çalıştığını doğrulamak için yazıldı. Testler `test/` klasöründe yer almaktadır:
+
+- **country_view_model_test.dart**
+  - `CountryViewModel`'in ülke listesini başarıyla çekmesi, hata durumunu yönetmesi ve filtreleme fonksiyonunu test eder.
+- **connection_stats_view_model_test.dart**
+  - `ConnectionStatsViewModel`'in bağlantı istatistiklerini çekmesi, bağlantı ve bağlantı kesme işlemlerini ve hata yönetimini test eder.
+- **country_repository_impl_test.dart**
+  - `CountryRepositoryImpl`'in mock veri kaynağından ülke listesini başarıyla çekip çekmediğini ve hata durumunu test eder.
+- **connection_stats_repository_impl_test.dart**
+  - `ConnectionStatsRepositoryImpl`'in mock veri kaynağından bağlantı istatistiklerini başarıyla çekip çekmediğini ve hata durumunu test eder.
+- **free_locations_repository_impl_test.dart**
+  - `FreeLocationsRepositoryImpl`'in mock veri kaynağından ücretsiz lokasyonları başarıyla çekip çekmediğini ve hata durumunu test eder.
+
+Testleri çalıştırmak için:
+
+```sh
+flutter test
+```
+
+
 ## Not
 - Proje study case amaçlıdır.
   
@@ -102,3 +126,5 @@ lib/
   <img src="assets/screenshots/home_dark.png" width="200" />
   <img src="assets/screenshots/country_info_dark.png" width="200" />
 </p>
+
+
