@@ -1,3 +1,4 @@
+import 'package:vpn_app/core/constants/image_paths.dart';
 import 'package:vpn_app/data/models/connection_stats_model.dart';
 import 'package:vpn_app/data/models/country_model.dart';
 
@@ -5,7 +6,7 @@ class MockData {
   static final mockCountries = [
     const CountryModel(
         name: 'Italy',
-        flag: 'assets/flag/italy.png',
+        flag: ImagePaths.italy,
         city: 'Rome',
         locationCount: 4,
         strength: 45,
@@ -13,7 +14,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Netherlands',
-        flag: 'assets/flag/netherlands.png',
+        flag: ImagePaths.netherlands,
         city: 'Amsterdam',
         locationCount: 4,
         strength: 30,
@@ -21,7 +22,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Germany',
-        flag: 'assets/flag/germany.png',
+        flag: ImagePaths.germany,
         city: 'Berlin',
         locationCount: 3,
         strength: 50,
@@ -29,7 +30,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'France',
-        flag: 'assets/flag/france.png',
+        flag: ImagePaths.france,
         city: 'Paris',
         locationCount: 5,
         strength: 35,
@@ -37,7 +38,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Belgium',
-        flag: 'assets/flag/belgium.png',
+        flag: ImagePaths.belgium,
         city: 'Brussels',
         locationCount: 6,
         strength: 42,
@@ -45,7 +46,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Denmark',
-        flag: 'assets/flag/denmark.png',
+        flag: ImagePaths.denmark,
         city: 'Copenhagen',
         locationCount: 3,
         strength: 22,
@@ -53,7 +54,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Spain',
-        flag: 'assets/flag/spain.png',
+        flag: ImagePaths.spain,
         city: 'Madrid',
         locationCount: 8,
         strength: 48,
@@ -61,7 +62,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Portugal',
-        flag: 'assets/flag/portugal.png',
+        flag: ImagePaths.portugal,
         city: 'Lisbon',
         locationCount: 11,
         strength: 45,
@@ -69,7 +70,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'United States',
-        flag: 'assets/flag/usa.png',
+        flag: ImagePaths.usa,
         city: 'New York',
         locationCount: 9,
         strength: 30,
@@ -77,7 +78,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Turkey',
-        flag: 'assets/flag/turkey.png',
+        flag: ImagePaths.turkey,
         city: 'Istanbul',
         locationCount: 15,
         strength: 80,
@@ -85,7 +86,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'United Kingdom',
-        flag: 'assets/flag/uk.png',
+        flag: ImagePaths.uk,
         city: 'London',
         locationCount: 12,
         strength: 57,
@@ -93,7 +94,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Canada',
-        flag: 'assets/flag/canada.png',
+        flag: ImagePaths.canada,
         city: 'Ottawa',
         locationCount: 2,
         strength: 15,
@@ -104,7 +105,7 @@ class MockData {
     static final mockFreeLocations = [
       const CountryModel(
         name: 'Italy',
-        flag: 'assets/flag/italy.png',
+        flag: ImagePaths.italy,
         city: 'Rome',
         locationCount: 4,
         strength: 45,
@@ -112,7 +113,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Netherlands',
-        flag: 'assets/flag/netherlands.png',
+        flag: ImagePaths.netherlands,
         city: 'Amsterdam',
         locationCount: 4,
         strength: 30,
@@ -120,7 +121,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'Germany',
-        flag: 'assets/flag/germany.png',
+        flag: ImagePaths.germany,
         city: 'Berlin',
         locationCount: 3,
         strength: 50,
@@ -128,7 +129,7 @@ class MockData {
       ),
       const CountryModel(
         name: 'France',
-        flag: 'assets/flag/france.png',
+        flag: ImagePaths.france,
         city: 'Paris',
         locationCount: 5,
         strength: 35,
