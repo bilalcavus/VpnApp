@@ -89,3 +89,15 @@ lib/
 
 ## Not
 - Proje study case amaçlıdır.
+  
+
+## Görüntüler
+<p align="left">
+  <img src="assets/screenshots/demo.gif" width="200" />
+  <img src="assets/screenshots/home_light.png" width="200" />
+  <img src="assets/screenshots/disconnect_light.png" width="200" />
+  <img src="assets/screenshots/countries_light.png" width="200" />
+  <img src="assets/screenshots/country_info.png" width="200" />
+  <img src="assets/screenshots/splash_dark.png" width="200" />
+  <img src="assets/screenshots/home_dark.png" width="200" />
+</p>
