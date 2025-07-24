@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:vpn_app/core/resources/data_state.dart';
 import 'package:vpn_app/data/mock/mock_data.dart';
@@ -52,7 +50,6 @@ class ConnectionStatsViewModel extends GetxController {
 }
 
   Future<void> connectToCountry(CountryModel country) async {
-    debugPrint('connectToCountry: Connecting to ${country.name}');
     selectedCountry.value = country.copyWith(isConnected: true);
     isConnected.value = true;
     connectionStats.value = connectionStats.value.copyWith(
@@ -78,7 +75,6 @@ class ConnectionStatsViewModel extends GetxController {
   }
 
   Future<void> disconnected(CountryModel country) async {
-    debugPrint('disconnected: Disconnecting');
     _timer?.cancel();
     isConnected.value = false;
     selectedCountry.value = country.copyWith(isConnected: false);

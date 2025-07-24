@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:vpn_app/core/resources/data_state.dart';
 import 'package:vpn_app/data/models/country_model.dart';
@@ -49,7 +48,6 @@ class CountryViewModel extends GetxController {
     
     errorMessage.value = '';
     final result = await _getFreeLocations();
-    debugPrint('$result');
     try {
       if (result is DataSuccess<List<CountryModel>>) {
         freeLocations.assignAll(result.data!);
@@ -78,6 +76,5 @@ class CountryViewModel extends GetxController {
         }).toList()
       );
     }
-    debugPrint('Filtered:  [32m${filteredCountries.length} [0m');
   }
 }

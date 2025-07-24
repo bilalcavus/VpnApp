@@ -39,7 +39,6 @@ class _ConnectionLoadingViewState extends State<ConnectionLoadingView> {
                       connectedInfo.connectedCountry!.name == country.name;
     connectionStatsViewModel.connectionStats.value.connectedCountry;
     if (connected) {
-      debugPrint('$connected');
       RouteHelper.pushAndCloseOther(context, AppNavigation());
     }
   }

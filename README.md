@@ -63,8 +63,8 @@ lib/
   assets/       # Bayraklar, animasyonlar
 ```
 
-- **Katmanlı mimari** (Clean Architecture yaklaşımı)
-- **MVVM (Model-View-ViewModel) mimarisi:** Sunum katmanında View ve ViewModel ayrımı ile reaktif yapı
+- **Katmanlı mimari** (Clean Architecture yaklaşımı: Presentation Layer, Domain Layer, Data Layer)
+- **MVVM (Model-View-ViewModel) mimarisi:**  View ve ViewModel ayrımı sayesinde UI ve iş mantığı ayrılır. ViewModel ilgili veriyi Model / repository'den alır, veriyi işler ve View'a gönderir.
 - **Dependency Injection:** get_it
 - **State Management & Navigation:** GetX
 - **Mock veri kaynakları:** Backend bağımsız geliştirme
