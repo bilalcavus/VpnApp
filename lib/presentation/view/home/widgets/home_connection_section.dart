@@ -185,7 +185,6 @@ class _LoadSpeedContainer extends StatelessWidget {
   final Color iconColor;
   final Color iconBackgroundColor;
   const _LoadSpeedContainer({
-    super.key,
     required this.title,
     required this.value,
     required this.icon,

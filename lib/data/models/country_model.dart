@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:vpn_app/domain/entity/country_entity.dart';
 
+part 'country_model.g.dart';
+
+@JsonSerializable()
 class CountryModel extends CountryEntity {
   const CountryModel({
     required super.name,
@@ -10,16 +14,8 @@ class CountryModel extends CountryEntity {
     required super.isConnected,
   });
 
-  factory CountryModel.fromJson(Map<String, dynamic> map) {
-    return CountryModel(
-      name: map['name'] as String,
-      flag: map['flag'] as String,
-      city: map['city'] as String? ?? '',
-      locationCount: map['locationCount'] as int,
-      strength: map['strength'] as int,
-      isConnected: map['isConnected'] as bool? ?? false,
-    );
-  }
+  factory CountryModel.fromJson(Map<String, dynamic> json) => _$CountryModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CountryModelToJson(this);
 
   factory CountryModel.fromEntity(CountryEntity entity) {
     return CountryModel(
@@ -30,17 +26,6 @@ class CountryModel extends CountryEntity {
       strength: entity.strength,
       isConnected: entity.isConnected,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'flag': flag,
-      'city': city,
-      'locationCount': locationCount,
-      'strength': strength,
-      'isConnected': isConnected,
-    };
   }
 
   CountryModel copyWith({
