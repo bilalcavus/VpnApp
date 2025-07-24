@@ -21,7 +21,7 @@ Flutter ile geliştirilmiş, çok katmanlı mimariye sahip, study case amaçlı 
 
 1. **Projeyi Klonlayın**
    ```sh
-   git clone <https://github.com/bilalcavus/VpnApp.git>
+   git clone https://github.com/bilalcavus/VpnApp.git
    cd vpn_app
    ```
 
