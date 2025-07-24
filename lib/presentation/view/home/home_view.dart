@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
-import 'package:vpn_app/core/theme/custom_theme_color.dart';
 import 'package:vpn_app/presentation/view/home/widgets/home_connecting_time_widget.dart';
 import 'package:vpn_app/presentation/view/home/widgets/home_connection_section.dart';
 import 'package:vpn_app/presentation/view/home/widgets/home_free_locations_widget.dart';
@@ -24,13 +23,10 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _countryViewModel = getIt<CountryViewModel>();
     _connectionStatsViewModel = getIt<ConnectionStatsViewModel>();
-    _countryViewModel.fetchFreeLocations();
-    _countryViewModel.fetchCountries();
   }
   @override
 Widget build(BuildContext context) {
   return Scaffold(
-    backgroundColor: CustomColorTheme.bottomSheet(context),
     body: SingleChildScrollView(
       padding: EdgeInsets.zero,
       child: Column(

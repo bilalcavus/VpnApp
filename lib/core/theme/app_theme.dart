@@ -40,23 +40,23 @@ class AppTheme {
       type: BottomNavigationBarType.fixed,
       elevation: 10,
     ),
-    inputDecorationTheme: const InputDecorationTheme(
-      filled: true,
-      fillColor: Colors.white,
-      focusedBorder: OutlineInputBorder(
-        // borderSide: BorderSide(color: Color(0xff2f39ac)),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      hintStyle: TextStyle(color: Color(0xff666666), fontWeight: FontWeight.w300),
-      enabledBorder: OutlineInputBorder(
-        // borderSide: BorderSide(color: Colors.black12),
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        borderSide: BorderSide.none,
-      ),
-    ),
+    // inputDecorationTheme: const InputDecorationTheme(
+    //   filled: true,
+    //   fillColor: Colors.white,
+    //   focusedBorder: OutlineInputBorder(
+    //     // borderSide: BorderSide(color: Color(0xff2f39ac)),
+    //     borderRadius: BorderRadius.all(Radius.circular(20)),
+    //   ),
+    //   hintStyle: TextStyle(color: Color(0xff666666), fontWeight: FontWeight.w300),
+    //   enabledBorder: OutlineInputBorder(
+    //     // borderSide: BorderSide(color: Colors.black12),
+    //     borderRadius: BorderRadius.all(Radius.circular(12)),
+    //   ),
+    //   border: OutlineInputBorder(
+    //     borderRadius: BorderRadius.all(Radius.circular(12)),
+    //     borderSide: BorderSide.none,
+    //   ),
+    // ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textTheme: const TextTheme(
       titleLarge: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),

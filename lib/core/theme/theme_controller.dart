@@ -7,7 +7,7 @@ import 'app_theme.dart';
 class ThemeController extends GetxController {
   ThemeData _themeData = AppTheme.lightTheme;
   final RxBool _isDarkMode = false.obs;
-  static const String THEME_KEY = 'isDarkMode';
+  static const String themeKey = 'isDarkMode';
 
   ThemeData get themeData => _themeData;
   bool get isDarkMode => _isDarkMode.value;
@@ -20,7 +20,7 @@ class ThemeController extends GetxController {
 
   Future<void> _loadThemeFromPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _isDarkMode.value = prefs.getBool(THEME_KEY) ?? false;
+    _isDarkMode.value = prefs.getBool(themeKey) ?? false;
     _themeData = _isDarkMode.value ? AppTheme.darkTheme : AppTheme.lightTheme;
     update();
   }
@@ -29,7 +29,7 @@ class ThemeController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isDarkMode.value = !_isDarkMode.value;
     _themeData = _isDarkMode.value ? AppTheme.darkTheme : AppTheme.lightTheme;
-    await prefs.setBool(THEME_KEY, _isDarkMode.value);
+    await prefs.setBool(themeKey, _isDarkMode.value);
     update();
   }
 }

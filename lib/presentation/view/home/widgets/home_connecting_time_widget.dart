@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vpn_app/core/constants/text_strings.dart';
 import 'package:vpn_app/core/di/injection.dart';
+import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
 import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 
 class ConnectingTimeWidget extends StatelessWidget {
@@ -26,11 +28,11 @@ class ConnectingTimeWidget extends StatelessWidget {
       return Center(
         child: Column(
           children: [
-            const Text('Connecting Time'),
+            const Text(TextStrings.connectingTime),
             Text( isConnected ?
-              formatDuration(duration) : '--/--/--',
-              style: const TextStyle(
-                fontSize: 30,
+              formatDuration(duration) : TextStrings.nullTime,
+              style:  TextStyle(
+                fontSize: context.dynamicHeight(0.04),
                 fontWeight: FontWeight.bold,
               ),
             ),

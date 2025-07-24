@@ -69,24 +69,34 @@ class CustomBottomNavigation extends StatelessWidget {
     final isSelected = currentIndex == index;
     return GestureDetector(
       onTap: onTapOverride ?? () => onTap(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? const Color(0xff1A5CFF) : null,
-            size: context.dynamicWidth(0.06),
-          ),
-          SizedBox(height: context.dynamicHeight(0.005)),
-          Text(
-            label,
-            style: TextStyle(
-              color:  isSelected ? const Color(0xff1A5CFF) : null,
-              fontSize: context.dynamicHeight(0.014),
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.dynamicWidth(0.04),
+          vertical: context.dynamicHeight(0.01),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? const Color(0xff1A5CFF) : null,
+              size: context.dynamicWidth(0.06),
             ),
-          ),
-        ],
+            SizedBox(height: context.dynamicHeight(0.005)),
+            Text(
+              label,
+              style: TextStyle(
+                color:  isSelected ? const Color(0xff1A5CFF) : null,
+                fontSize: context.dynamicHeight(0.014),
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

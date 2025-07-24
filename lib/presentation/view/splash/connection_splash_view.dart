@@ -4,7 +4,8 @@ import 'package:vpn_app/core/di/injection.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
 import 'package:vpn_app/core/helper/route_helper.dart';
 import 'package:vpn_app/data/models/country_model.dart';
-import 'package:vpn_app/presentation/view/navigation/bottom_navigation.dart';
+import 'package:vpn_app/presentation/view/navigation/app_navigation.dart';
+import 'package:vpn_app/presentation/view/widgets/flag_icon.dart';
 import 'package:vpn_app/presentation/viewmodel/connection_stats_view_model.dart';
 import 'package:vpn_app/presentation/viewmodel/country_view_model.dart';
 
@@ -34,12 +35,12 @@ class _ConnectionLoadingViewState extends State<ConnectionLoadingView> {
     final country = countryViewModel.selectedCountry.value;
         final connectedInfo = connectionStatsViewModel.connectionStats.value;
     final connected = connectedInfo.connectedCountry != null &&
-                  country != null &&
-                  connectedInfo.connectedCountry!.name == country.name;
+                      country != null &&
+                      connectedInfo.connectedCountry!.name == country.name;
     connectionStatsViewModel.connectionStats.value.connectedCountry;
     if (connected) {
       debugPrint('$connected');
-      RouteHelper.pushAndCloseOther(context, BottomNavigation());
+      RouteHelper.pushAndCloseOther(context, AppNavigation());
     }
   }
   @override
@@ -51,7 +52,8 @@ class _ConnectionLoadingViewState extends State<ConnectionLoadingView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset('assets/lottie/connect_loading.json', height: context.dynamicHeight(0.2)),
-              Text('Connecting...', style: TextStyle(fontSize: context.dynamicHeight(0.03), fontWeight: FontWeight.bold),)
+              Text('Connecting...', style: TextStyle(fontSize: context.dynamicHeight(0.03), fontWeight: FontWeight.w400),),
+              FlagIcon(assetPath: countryViewModel.selectedCountry.value!.flag)
             ],
           )
         ),

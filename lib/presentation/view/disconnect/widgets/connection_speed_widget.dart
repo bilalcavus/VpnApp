@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:vpn_app/core/constants/text_strings.dart';
 import 'package:vpn_app/core/helper/dynamic_size_helper.dart';
 
 class ConnectionSpeedWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class ConnectionSpeedWidget extends StatelessWidget {
           ),
           SizedBox(width: context.dynamicWidth(0.01)),
             Text(
-            'MB',
+              TextStrings.mb,
             style: TextStyle(fontSize: context.dynamicHeight(0.014)),
             ),
             ],
