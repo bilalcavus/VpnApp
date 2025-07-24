@@ -97,6 +97,7 @@ lib/
   <img src="assets/screenshots/home_light.png" width="200" />
   <img src="assets/screenshots/disconnect_light.png" width="200" />
   <img src="assets/screenshots/countries_light.png" width="200" />
+  <img src="assets/screenshots/demo2.gif" width="200" />
   <img src="assets/screenshots/splash_dark.png" width="200" />
   <img src="assets/screenshots/home_dark.png" width="200" />
   <img src="assets/screenshots/country_info_dark.png" width="200" />
