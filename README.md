@@ -88,4 +88,4 @@ lib/
 | json_serializable            | JSON serileştirme için kod üretimi (g.dart modelleri için)  |
 
 ## Not
-- Proje eğitim ve örnek amaçlıdır.
+- Proje study case amaçlıdır.
